@@ -1,32 +1,35 @@
-#VORISLIK VA POLIMAFIZIM
-class Dukon:
-    def __init__(self,nomi,manzili,turi,telefon):
-        self.nomi=nomi
-        self.manzili=manzili
-        self.turi=turi
-        self.telefon=telefon
-        self.tovarlar=[]
+class Shaxs:
+    def __init__(self,ism,familiya,ish_joyi):
+        self.ism=ism
+        self.familiya=familiya
+        self.ish_joyi=ish_joyi
         
     def get_info(self):
-          return f"{self.nomi} {self.manzili} {self.turi} {self.telefon}"
-    
-    def add_tovar(self,new):
-        self.tovarlar.append(new)
-        
-    def get_tovarlar(self):
-        return self.tovarlar
+        return f"{self.ism} {self.familiya} {self.ish_joyi} "
     
     def __repr__(self):
-        return self.nomi
+        return self.ism
     
-class Gul_dukon(Dukon):
-     def __init__(self, nomi, manzili, turi, telefon,gullar_soni):   
-        super().__init__(nomi, manzili, turi, telefon)
-        self.gullar_soni=gullar_soni
+class Foydalanuvchi(Shaxs):
+     def __init__(self,ism,familiya,ish_joyi,tel):   
+        super().__init__(ism,familiya,ish_joyi)
+        self.tel=tel
         
      def get_info(self):
          full= super().get_info()
-         full+=self.gullar_soni
+         full+=self.tel
          return full
         
-obj1=Gul_dukon("Fotima", "Xonqa tuman ", "Gullar", "+998977920403",250)        
+obj1=Foydalanuvchi("Fotima", "Nurmetova", "TATU", "+998977920403")
+
+class Admin(Foydalanuvchi):
+      def __init__(self,ism,familiya,ish_joyi,tel,manzili):   
+         super().__init__(ism,familiya,ish_joyi,tel)
+         self.manzili=manzili
+         
+      def get_info(self):
+          full= super().get_info()
+          full+=self.tel
+          return full
+      def ban_user(self):
+          return "Foydalanuvchi bloqlandi"
